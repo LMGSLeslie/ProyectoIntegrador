@@ -14,7 +14,6 @@ import domain from '@material-ui/icons/Domain';
 
 
 
-
 const dataProvider = fakeDataProvider({
   agenda : [
   {'Empresa': 'GEPP', 'Servicio': 'NOM-OTRO', 'Fecha': 'Mon Jan 14 2019 00:00:00 GMT+0000 (UTC)', 'Hora de Inicio': '11:00', 'Hora de Finalización': '15:00', 'Técnico Asignado': 'Josue Ese', 'Ubicación': 'Cuautitlán', 'Agendó': 'Pedro Aquel'},

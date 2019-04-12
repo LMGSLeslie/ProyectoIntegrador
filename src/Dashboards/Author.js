@@ -11,14 +11,21 @@ import { List, Create, Edit, SimpleForm, DisabledInput, TextInput, DateInput, Lo
 
 import { Chart, ArgumentAxis, ValueAxis, LineSeries, PieSeries, BarSeries } from "@devexpress/dx-react-chart-material-ui";
 
+import dataProvider from '../infoProvider';
+
 var cardStyle = {
     width: '100%',
     height: '100%',
     marginBottom: '5%'
   
-  }
+}
 
-  
+var parametrizationStyle = {
+    width: '100%',
+    marginBottom: '5%'
+}
+
+
 const areas = [
         {'id': '1', 'nombre_area':'Computación'},
         {'id': '2', 'nombre_area':'Matemáticas'},
@@ -28,6 +35,8 @@ const areas = [
 
 const Author = () =>(
     <div class="container">
+    <Card style={parametrizationStyle   }>
+        <CardContent>
         <form>
             <div class="row justify-content-center">
                 <div class="col-md-12">
@@ -46,24 +55,42 @@ const Author = () =>(
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-md-4 col-sm-7">
+                <div class="col-md-6 col-sm-12">
                     <select class ="custom-select">
-                        {
-                            areas.map(area => {
+                    {
+                        dataProvider[0].area.map(a =>{
                                 return (
-                                <option key={area.id} value={area.nombre_area}>
-                                {area.nombre_area}
-                                </option>
-                                )
-                            })
-                        }
+                                    <option key={a.IdArea} value={a.NombreArea}>
+                                    {a.NombreArea}
+                                    </option>
+                            )})
+                        })
+                        });
+                    }
+                    </select>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <select class="custom-select" multiple>
+                    {
+                        dataProvider[0].autor.map(a =>{
+                            //if(dataProvider[0].areaInstitucion.values
+                                return (
+                                    <option key={a.IdInvestigador} value={a.Nombre}>
+                                    {a.Nombre}
+                                    </option>
+                            )})
+                        })
+                        });
+                    }
                     </select>
                 </div>
                 
             </div>
         </form>
-            <Grid container spacing={8}>
-    <Grid item xs={6}>
+        </CardContent>
+    </Card>
+    <Grid container spacing={8}>
+        <Grid item xs={6}>
     <Card style={cardStyle}
     >
         <CardHeader title="Publicaciones por área" />
