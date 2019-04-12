@@ -8,9 +8,9 @@ import Area from './Dashboards/Area';
 import Institution from './Dashboards/Institution';
 
 //ICONS
-import {person} from '@material-ui/icons/Person';
-import {group} from '@material-ui/icons/Group';
-import {domain} from '@material-ui/icons/Domain';
+import person from '@material-ui/icons/Person';
+import group from '@material-ui/icons/Group';
+import domain from '@material-ui/icons/Domain';
 
 
 

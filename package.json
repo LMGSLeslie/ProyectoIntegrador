@@ -6,6 +6,7 @@
     "@devexpress/dx-react-chart": "^1.10.5",
     "@devexpress/dx-react-chart-material-ui": "^1.10.5",
     "@devexpress/dx-react-core": "^1.10.5",
+    "bootstrap": "^4.3.1",
     "canvasjs": "^1.8.1",
     "chai-as-promised": "^7.1.1",
     "knex": "^0.16.3",
@@ -19,8 +20,10 @@
     "ra-jsonapi-client": "^0.4.4",
     "react": "^16.8.6",
     "react-admin": "^2.6.1",
+    "react-bootstrap": "^1.0.0-beta.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "react-select": "^2.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
