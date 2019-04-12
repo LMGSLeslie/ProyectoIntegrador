@@ -14,12 +14,13 @@ const Author = () =>(
         <form>
             <div class="row justify-content-center">
                 <div class="col-md-12">
+                    <center><label>Tiempo</label></center>
                     <div class="row justify-content-center">
                         <div class="col-1">
                             <label>2 años</label>
                         </div>
                         <div class="col-10">
-                            <input type="range" class="custom-range" min="2" max="10" tooltip="show" title="Tiempo"/>
+                            <input type="range" class="custom-range" min="2" max="10" tooltip="show"/>
                         </div>
                         <div class ="col-1">
                             <label>10 años</label>
@@ -28,7 +29,7 @@ const Author = () =>(
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-7">
                     <select class ="custom-select">
                         {
                             areas.map(area => {
@@ -41,6 +42,7 @@ const Author = () =>(
                         }
                     </select>
                 </div>
+                
             </div>
         </form>
     </div>
