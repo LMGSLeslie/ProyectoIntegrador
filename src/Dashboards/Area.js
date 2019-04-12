@@ -11,8 +11,6 @@ var cardStyle = {
    height: '45vw'
 }
 
-var link = "https://app.powerbi.com/view?r=eyJrIjoiZjhhMTZmOTQtNDNhNi00NzYzLTkwZTEtNjA5NjIxOTUyOGVjIiwidCI6ImQ0MmQxMThhLTMxNjQtNDY3MS1hZjk4LTZkMzkwNTljZTcwYiJ9"
-
 export default () => (
     <Card //style={cardStyle}
     >

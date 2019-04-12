@@ -1,10 +1,17 @@
 import React from 'react';
 import { Admin, Resource} from 'react-admin';
 import fakeDataProvider from 'ra-data-fakerest';
-import authProvider from './authProvider';
+
+//DASHBOARDS
+import Author from './Dashboards/Author';
+import Area from './Dashboards/Area';
+import Institution from './Dashboards/Institution';
 
 //ICONS
-import {person, group} from '@material-ui/icons'
+import {person} from '@material-ui/icons/Person';
+import {group} from '@material-ui/icons/Group';
+import {domain} from '@material-ui/icons/Domain';
+
 
 
 
@@ -23,10 +30,10 @@ const dataProvider = fakeDataProvider({
 
 
 const App = () => (
-  <Admin authProvider={authProvider} dataProvider={dataProvider}>
-    <Resource name="Por autor" list="Author" icon={person}/>
-    <Resource name="Por área" list="Area" icon={group}/>
-    <Resource name="Por institución" list="Institution"/>
+  <Admin dataProvider={dataProvider}>
+    <Resource name="Por autor" list={Author} icon={person}/>
+    <Resource name="Por área" list={Area} icon={group}/>
+    <Resource name="Por institución" list={Institution} icon={domain} />
   </Admin>
 
 );
