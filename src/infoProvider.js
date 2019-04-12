@@ -1,19 +1,4 @@
-import React from 'react';
-import { Admin, Resource} from 'react-admin';
-import fakeDataProvider from 'ra-data-fakerest';
-
-//DASHBOARDS
-import Author from './Dashboards/Author';
-import Area from './Dashboards/Area';
-import Institution from './Dashboards/Institution';
-
-//ICONS
-import person from '@material-ui/icons/Person';
-import group from '@material-ui/icons/Group';
-import domain from '@material-ui/icons/Domain';
-
-
-const dataProvider = fakeDataProvider({
+const dataProvider = [{
   autor : [
   {'IdInvestigador': '1', 'IdArea': '1', 'Nombre': 'Manuel', 'Apellidos': 'Pérez Estrada', 'FactorImpacto': '1', 'HIndex': '3'},
   {'IdInvestigador': '2', 'IdArea': '2', 'Nombre': 'Graciela', 'Apellidos': 'Medina Hernández', 'FactorImpacto': '3', 'HIndex': '5'},
@@ -104,7 +89,7 @@ areaInstitucion: [
     {'IdAreaInstitucion':'38','IdInstitucion':'1000','IdArea':'30'},
     {'IdAreaInstitucion':'39','IdInstitucion':'1000','IdArea':'80'},
     {'IdAreaInstitucion':'40','IdInstitucion':'1000','IdArea':'40'}
-]
+],
 
 detallePublicacion:  [
   {'IdDetallePublicacion':'1','IdInvestigador':'1','IdPublicacion':'1'},
@@ -175,16 +160,6 @@ citaPublicacion:  [
     {'IdCitaPublicacion':'40','IdPublicacion':'10','FechaCita':'2013-06-01','CantidadCitas':'6'}
 ]
 
-})
+}];
 
-
-const App = () => (
-  <Admin dataProvider={dataProvider}>
-    <Resource name="Por autor" list={Author} icon={person}/>
-    <Resource name="Por área" list={Area} icon={group}/>
-    <Resource name="Por institución" list={Institution} icon={domain} />
-  </Admin>
-
-);
-
-export default App;
+export default dataProvider;

@@ -26,13 +26,6 @@ var parametrizationStyle = {
 }
 
 
-const areas = [
-        {'id': '1', 'nombre_area':'Computación'},
-        {'id': '2', 'nombre_area':'Matemáticas'},
-        {'id': '3', 'nombre_area':'Arte y diseño'}
-    ];
-
-
 const Author = () =>(
     <div class="container">
     <Card style={parametrizationStyle   }>
