@@ -31,9 +31,9 @@ const dataProvider = fakeDataProvider({
 
 const App = () => (
   <Admin dataProvider={dataProvider}>
-    <Resource name="Por autor" list={Author} icon={person}/>
-    <Resource name="Por área" list={Area} icon={group}/>
-    <Resource name="Por institución" list={Institution} icon={domain} />
+    <Resource name="Autore" list={Author} icon={person}/>
+    <Resource name="Área" list={Area} icon={group}/>
+    <Resource name="Institucione" list={Institution} icon={domain} />
   </Admin>
 
 );
