@@ -7,7 +7,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import { Legend } from '@devexpress/dx-react-chart-material-ui';
 // import { PieSeries } from '@devexpress/dx-react-chart-bootstrap4';
 import { ValueScale, Animation } from '@devexpress/dx-react-chart';
-import { List, Create, Edit, SimpleForm, DisabledInput, TextInput, DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton } from 'react-admin';
+import { SelectInput, List, Create, Edit, SimpleForm, DisabledInput, TextInput, DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton } from 'react-admin';
 
 import { Chart, ArgumentAxis, ValueAxis, LineSeries, PieSeries, BarSeries } from "@devexpress/dx-react-chart-material-ui";
 
@@ -49,7 +49,7 @@ const Author = () =>(
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-6 col-sm-12">
-                    <select class ="custom-select">
+                <select class ="custom-select">
                     {
                         dataProvider[0].area.map(a =>{
                                 return (
@@ -60,18 +60,18 @@ const Author = () =>(
                         })
                         });
                     }
-                    </select>
-                </div>
+                </select>
+                </div>  
                 <div class="col-md-6 col-sm-12">
                     <select class="custom-select" multiple>
                     {
                         dataProvider[0].autor.map(a =>{
-                            //if(dataProvider[0].areaInstitucion.values
                                 return (
                                     <option key={a.IdInvestigador} value={a.Nombre}>
                                     {a.Nombre}
                                     </option>
-                            )})
+                            )
+                            })
                         })
                         });
                     }
@@ -109,17 +109,6 @@ const Author = () =>(
             <Animation />
             <Legend />
         </Chart>
-
-
-        <SimpleForm>
-            <TextInput source="Sucursal" />
-            <TextInput source="Nombre" />
-            <TextInput source="Departamento" />
-            <TextInput source="Puesto" />
-            <TextInput source="Correo" />
-            <TextInput source="Contraseña" />
-            <TextInput source="Rol" />
-        </SimpleForm>
         </CardContent>
 
     </Card>
