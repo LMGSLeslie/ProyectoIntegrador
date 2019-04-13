@@ -10,6 +10,8 @@ import { List, Create, Edit, SimpleForm, DisabledInput, TextInput, DateInput, Lo
 
 import { Chart, ArgumentAxis, ValueAxis, LineSeries, PieSeries, BarSeries } from "@devexpress/dx-react-chart-material-ui";
 
+import dataProvider from '../infoProvider'
+
 var cardStyle = {
   width: '100%',
   height: '100%',
