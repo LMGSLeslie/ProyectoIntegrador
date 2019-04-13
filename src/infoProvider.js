@@ -3,12 +3,12 @@ const dataProvider = [{
   {'IdInvestigador': '1', 'IdArea': '1', 'Nombre': 'Manuel', 'Apellidos': 'Pérez Estrada', 'FactorImpacto': '1', 'HIndex': '3'},
   {'IdInvestigador': '2', 'IdArea': '2', 'Nombre': 'Graciela', 'Apellidos': 'Medina Hernández', 'FactorImpacto': '3', 'HIndex': '5'},
   {'IdInvestigador': '3', 'IdArea': '3', 'Nombre': 'Verónica', 'Apellidos': 'Martínez Salazar', 'FactorImpacto': '1', 'HIndex': '4'},
-  {'IdInvestigador': '4', 'IdArea': '4', 'Nombre': 'Fernando', 'Apellidos': 'Lima Jiménez', 'FactorImpacto': '2', 'HIndex': '4'},
-  {'IdInvestigador': '5', 'IdArea': '5', 'Nombre': 'Antonio Julian', 'Apellidos': 'Campos Valle', 'FactorImpacto': '4', 'HIndex': '1'},
+  {'IdInvestigador': '4', 'IdArea': '3', 'Nombre': 'Fernando', 'Apellidos': 'Lima Jiménez', 'FactorImpacto': '2', 'HIndex': '4'},
+  {'IdInvestigador': '5', 'IdArea': '3', 'Nombre': 'Antonio Julian', 'Apellidos': 'Campos Valle', 'FactorImpacto': '4', 'HIndex': '1'},
   {'IdInvestigador': '6', 'IdArea': '6', 'Nombre': 'Miguel Angel', 'Apellidos': 'Santiago Mora', 'FactorImpacto': '4', 'HIndex': '3'},
-  {'IdInvestigador': '7', 'IdArea': '7', 'Nombre': 'César', 'Apellidos': 'Licona Díaz', 'FactorImpacto': '4', 'HIndex': '2'},
-  {'IdInvestigador': '8', 'IdArea': '8', 'Nombre': 'Armando', 'Apellidos': 'Casas Peña', 'FactorImpacto': '4', 'HIndex': '9'},
-  {'IdInvestigador': '9', 'IdArea': '9', 'Nombre': 'Sara Julieta', 'Apellidos': 'Andrade Gómez', 'FactorImpacto': '4', 'HIndex': '2'},
+  {'IdInvestigador': '7', 'IdArea': '1', 'Nombre': 'César', 'Apellidos': 'Licona Díaz', 'FactorImpacto': '4', 'HIndex': '2'},
+  {'IdInvestigador': '8', 'IdArea': '1', 'Nombre': 'Armando', 'Apellidos': 'Casas Peña', 'FactorImpacto': '4', 'HIndex': '9'},
+  {'IdInvestigador': '9', 'IdArea': '2', 'Nombre': 'Sara Julieta', 'Apellidos': 'Andrade Gómez', 'FactorImpacto': '4', 'HIndex': '2'},
   {'IdInvestigador': '10', 'IdArea': '10', 'Nombre': 'Wendy', 'Apellidos': 'Fernández', 'FactorImpacto': '4', 'HIndex': '1'}
   ],
 
