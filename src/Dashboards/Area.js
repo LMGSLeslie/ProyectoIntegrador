@@ -67,9 +67,9 @@ const Area = () => (
 
             <Chart
               data={[
-                { argument: "Ciencia de la Computación", factor: 30 , publicaciones: 20, citas: 10},
-                { argument: "Química", factor: 30 , publicaciones: 20, citas: 10 },
-                { argument: "Medicina", factor: 30 , publicaciones: 20, citas: 10 },
+                { argument: "Ciencia de la Computación", factor: 30, publicaciones: 20, citas: 10 },
+                { argument: "Química", factor: 30, publicaciones: 20, citas: 10 },
+                { argument: "Medicina", factor: 30, publicaciones: 20, citas: 10 },
               ]}
             >
               <ArgumentAxis />
@@ -108,27 +108,33 @@ const Area = () => (
 
             <Chart
               data={[
-                { argument: 1, value: 10 },
-                { argument: 2, value: 20 },
-                { argument: 3, value: 30 },
-                { argument1: 1, value1: 30 },
-                { argument1: 2, value1: 20 },
-                { argument1: 3, value1: 10 }
+                { argument: 2014, promedio: 10 },
+                { argument: 2015, promedio: 7 },
+                { argument: 2016, promedio: 5 },
+                { argument: 2017, promedio: 12 },
+                { argument: 2018, promedio: 8 },
+
+                { argument1: 2014, promedio1: 7 },
+                { argument1: 2015, promedio1: 5 },
+                { argument1: 2016, promedio1: 12 },
+                { argument1: 2017, promedio1: 8 },
+                { argument1: 2018, promedio1: 10 },
               ]}
             >
-              <ValueScale name="sale" />
-              <ValueScale name="total" />
               <ArgumentAxis />
               <ValueAxis />
               <LineSeries
-                valueField="value"
+                name="Ciencias de la computación"
+                valueField="promedio"
                 argumentField="argument"
               />
               <LineSeries
-                valueField="value1"
+                name="Química"
+                valueField="promedio1"
                 argumentField="argument1"
               />
               <Animation />
+              <Legend />
             </Chart>
           </CardContent>
         </Card>
@@ -139,7 +145,7 @@ const Area = () => (
       <Grid item xs={6}>
         <Card style={cardStyle}
         >
-          <CardHeader title="Porcentaje de articulos sin citas" />
+          <CardHeader title="Porcentaje de articulos sin citas en el año" />
           <CardContent>
 
             <Chart
