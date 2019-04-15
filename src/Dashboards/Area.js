@@ -6,7 +6,7 @@ import { Legend } from '@devexpress/dx-react-chart-material-ui';
 // import { PieSeries } from '@devexpress/dx-react-chart-bootstrap4';
 import { ValueScale, Animation, Stack } from '@devexpress/dx-react-chart';
 import Grid from '@material-ui/core/Grid';
-import { List, Create, Edit, SimpleForm, DisabledInput, TextInput, DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton } from 'react-admin';
+import { HoverState } from '@devexpress/dx-react-chart';
 
 import { Chart, ArgumentAxis, ValueAxis, LineSeries, PieSeries, BarSeries } from "@devexpress/dx-react-chart-material-ui";
 
@@ -17,10 +17,107 @@ var cardStyle = {
   height: '100%',
   marginBottom: '5%'
 
+} 
+var parametrizationStyle = {
+  width: '100%',
+  marginBottom: '5%'
 }
 
-const Area = () => (
-  <container>
+const datos_publicaciones_area = [
+  { argument: "Financiera", value: 10 },
+  { argument: "Agricultura", value: 20 },
+  { argument: "Medicina", value: 30 },
+  { argument: "Arte", value: 10 },
+  { argument: "Química", value: 20 },
+  { argument: "Ciencia de la computación", value: 30 },
+  { argument: "Ciencias Biologicas", value: 10 },
+  { argument: "Economía", value: 20 },
+  { argument: "Ley y Política", value: 30 }
+]
+
+const datos_factor_impacto = [
+  { argument: "Ciencia de la Computación", factor: 30, publicaciones: 20, citas: 10 },
+  { argument: "Química", factor: 30, publicaciones: 20, citas: 10 },
+  { argument: "Medicina", factor: 30, publicaciones: 20, citas: 10 },
+]
+
+const datos_citas_area = [
+  { argument: 2014, promedio: 10 },
+  { argument: 2015, promedio: 7 },
+  { argument: 2016, promedio: 5 },
+  { argument: 2017, promedio: 12 },
+  { argument: 2018, promedio: 8 },
+
+  { argument1: 2014, promedio1: 7 },
+  { argument1: 2015, promedio1: 5 },
+  { argument1: 2016, promedio1: 12 },
+  { argument1: 2017, promedio1: 8 },
+  { argument1: 2018, promedio1: 10 },
+]
+
+const datos_articulos_sin_citas = [
+  { argument: "Juan Perez", value: 10 },
+  { argument: "José José", value: 20 },
+]
+
+
+const Area = () => (  
+  <div>
+    <Card style={parametrizationStyle}>
+      <CardContent>
+        <form>
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <center><label>Tiempo</label></center>
+              <div class="row justify-content-center">
+                <div class="col-1">
+                  <label>2 años</label>
+                </div>
+                <div class="col-10">
+                  <input type="range" class="custom-range" min="2" max="10" tooltip="show" />
+                </div>
+                <div class="col-1">
+                  <label>10 años</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-sm-12">
+              <select class="custom-select">
+                {
+                  dataProvider[0].area.map(a => {
+                    return (
+                      <option key={a.IdArea} value={a.NombreArea}>
+                        {a.NombreArea}
+                      </option>
+                    )
+                  })
+                })
+                });
+            }
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <select class="custom-select" multiple>
+                {
+                  dataProvider[0].autor.map(a => {
+                    return (
+                      <option key={a.IdInvestigador} value={a.Nombre}>
+                        {a.Nombre}
+                      </option>
+                    )
+                  })
+                })
+                });
+            }
+                    </select>
+            </div>
+
+          </div>
+        </form>
+      </CardContent>
+    </Card>
 
     {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
 
@@ -32,22 +129,11 @@ const Area = () => (
           <CardContent>
 
             <Chart
-              data={[
-                { argument: "Financiera", value: 10 },
-                { argument: "Agricultura", value: 20 },
-                { argument: "Medicina", value: 30 },
-                { argument: "Arte", value: 10 },
-                { argument: "Química", value: 20 },
-                { argument: "Ciencia de la computación", value: 30 },
-                { argument: "Ciencias Biologicas", value: 10 },
-                { argument: "Economía", value: 20 },
-                { argument: "Ley y Política", value: 30 }
-              ]}
+              data={datos_publicaciones_area}
             >
-              <ValueScale name="sale" />
-              <ValueScale name="total" />
               <PieSeries name="publicaciones" valueField="value" argumentField="argument" />
 
+              <HoverState />
               <Animation />
               <Legend />
             </Chart>
@@ -66,11 +152,7 @@ const Area = () => (
 
 
             <Chart
-              data={[
-                { argument: "Ciencia de la Computación", factor: 30, publicaciones: 20, citas: 10 },
-                { argument: "Química", factor: 30, publicaciones: 20, citas: 10 },
-                { argument: "Medicina", factor: 30, publicaciones: 20, citas: 10 },
-              ]}
+              data={datos_factor_impacto}
             >
               <ArgumentAxis />
               <ValueAxis />
@@ -107,19 +189,7 @@ const Area = () => (
           <CardContent>
 
             <Chart
-              data={[
-                { argument: 2014, promedio: 10 },
-                { argument: 2015, promedio: 7 },
-                { argument: 2016, promedio: 5 },
-                { argument: 2017, promedio: 12 },
-                { argument: 2018, promedio: 8 },
-
-                { argument1: 2014, promedio1: 7 },
-                { argument1: 2015, promedio1: 5 },
-                { argument1: 2016, promedio1: 12 },
-                { argument1: 2017, promedio1: 8 },
-                { argument1: 2018, promedio1: 10 },
-              ]}
+              data={datos_citas_area}
             >
               <ArgumentAxis />
               <ValueAxis />
@@ -149,20 +219,8 @@ const Area = () => (
           <CardContent>
 
             <Chart
-              data={[
-                { argument: "Financiera", value: 10 },
-                { argument: "Agricultura", value: 20 },
-                { argument: "Medicina", value: 30 },
-                { argument: "Arte", value: 10 },
-                { argument: "Química", value: 20 },
-                { argument: "Ciencia de la computación", value: 30 },
-                { argument: "Ciencias Biologicas", value: 10 },
-                { argument: "Economía", value: 20 },
-                { argument: "Ley y Política", value: 30 }
-              ]}
+              data={datos_articulos_sin_citas}
             >
-              <ValueScale name="sale" />
-              <ValueScale name="total" />
               <PieSeries name="publicaciones" valueField="value" argumentField="argument" />
 
               <Animation />
@@ -175,7 +233,7 @@ const Area = () => (
 
 
     </Grid>
-  </container>
+  </div>
 );
 
 export default Area;
