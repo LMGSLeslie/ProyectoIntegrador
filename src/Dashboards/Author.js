@@ -20,8 +20,8 @@ import DateFnsUtils from '@date-io/date-fns';
 
 //devexpress
 import { Legend } from '@devexpress/dx-react-chart-material-ui';
-import { ValueScale, Animation } from '@devexpress/dx-react-chart';
-import { Chart, PieSeries} from "@devexpress/dx-react-chart-material-ui";
+import { ValueScale, Animation, Stack } from '@devexpress/dx-react-chart';
+import { Chart, ArgumentAxis, ValueAxis, LineSeries, PieSeries, BarSeries } from "@devexpress/dx-react-chart-material-ui";
 
 import dataProvider from '../infoProvider';
 
@@ -31,7 +31,7 @@ var cardStyle = {
     width: '100%',
     height: '100%',
     marginBottom: '5%'
-  
+
 }
 
 var parametrizationStyle = {
@@ -43,7 +43,26 @@ var formControl = {
     minWidth: '100%',
     maxWidth: 300,
 }
+// -------------------------------DATOS-------------------------------------------------//
+const datos_factor_impacto = [
+    { argument: "Juanito", factor: 30, publicaciones: 20, citas: 10 },
+    { argument: "Perenganito", factor: 30, publicaciones: 20, citas: 10 },
+    { argument: "Jorgito", factor: 30, publicaciones: 20, citas: 10 },
+]
 
+const datos_citas_autor = [
+    { argument: 2014, promedio: 10 },
+    { argument: 2015, promedio: 7 },
+    { argument: 2016, promedio: 5 },
+    { argument: 2017, promedio: 12 },
+    { argument: 2018, promedio: 8 },
+
+    { argument1: 2014, promedio1: 7 },
+    { argument1: 2015, promedio1: 5 },
+    { argument1: 2016, promedio1: 12 },
+    { argument1: 2017, promedio1: 8 },
+    { argument1: 2018, promedio1: 10 },
+]
 // -----------------------------------------CLASS --------------------------------------------//
 
 var area = dataProvider[0].area;
@@ -53,7 +72,7 @@ var minYear = 1984;
 var minEndYear = minYear + 2;
 var maxEndYear = minYear + 10;
 
-class Author extends React.Component{
+class Author extends React.Component {
     state = {
         area: '',
         authors: [],
@@ -67,25 +86,25 @@ class Author extends React.Component{
     };
 
     handleChangeAuthors = event => {
-        this.setState({authors: event.target.value});
+        this.setState({ authors: event.target.value });
     };
 
-    handleChangeStartDate = event =>{
+    handleChangeStartDate = event => {
         const eventYear = new Date(event).getFullYear();
         console.log(year);
-        this.setState({startDate: eventYear});
-        minEndYear = eventYear+2
-        maxEndYear = eventYear+10 > year ? year:eventYear+10;
+        this.setState({ startDate: eventYear });
+        minEndYear = eventYear + 2
+        maxEndYear = eventYear + 10 > year ? year : eventYear + 10;
     };
-    
-    handleChangeEndDate = event =>{
-        this.setState({endDate: new Date(event).getFullYear()});
-    };
-    
 
-// ------------------------------------GRID-------------------------------------------------//
+    handleChangeEndDate = event => {
+        this.setState({ endDate: new Date(event).getFullYear() });
+    };
+
+
+    // ------------------------------------GRID-------------------------------------------------//
     render() {
-        return(
+        return (
             <Grid container spacing={8}>
                 <Grid item xs={12}>
                     <Card style={parametrizationStyle}>
@@ -93,32 +112,32 @@ class Author extends React.Component{
                             <form autoComplete="off">
                                 <Grid container spacing={8}>
                                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                        <Grid item xs ={6}>
+                                        <Grid item xs={6}>
                                             <DatePicker
-                                                style = {formControl}
+                                                style={formControl}
                                                 views={["year"]}
                                                 label="Desde"
-                                                minDate={new Date((minYear+1).toString())}
+                                                minDate={new Date((minYear + 1).toString())}
                                                 maxDate={new Date()}
-                                                value={new Date((this.state.startDate+1).toString())}
+                                                value={new Date((this.state.startDate + 1).toString())}
                                                 onChange={this.handleChangeStartDate}
-                                                />
+                                            />
                                         </Grid>
-                                        <Grid item xs = {6}>
+                                        <Grid item xs={6}>
                                             <DatePicker
-                                                style = {formControl}
+                                                style={formControl}
                                                 views={["year"]}
                                                 label="Hasta"
-                                                minDate={new Date((minEndYear+1).toString())}
-                                                maxDate={new Date((maxEndYear+1).toString())}
-                                                value={new Date((this.state.endDate+1).toString())}
+                                                minDate={new Date((minEndYear + 1).toString())}
+                                                maxDate={new Date((maxEndYear + 1).toString())}
+                                                value={new Date((this.state.endDate + 1).toString())}
                                                 onChange={this.handleChangeEndDate}
                                             />
                                         </Grid>
                                     </MuiPickersUtilsProvider>
                                 </Grid>
                                 <Grid container spacing={8}>
-                                    <Grid item xs = {6}>
+                                    <Grid item xs={6}>
                                         <FormControl style={formControl}>
                                             <InputLabel htmlFor="input_area">Área</InputLabel>
                                             <Select
@@ -127,14 +146,14 @@ class Author extends React.Component{
                                                 onChange={this.handleChangeArea}
                                             >
                                                 {dataProvider[0].area.map(a => (
-                                                <MenuItem key={a.IdArea} value={a.NombreArea}>
+                                                    <MenuItem key={a.IdArea} value={a.NombreArea}>
                                                         {a.NombreArea}
                                                     </MenuItem>
                                                 ))}
                                             </Select>
-                                        </FormControl>                        
+                                        </FormControl>
                                     </Grid>
-                                    <Grid item xs ={6}>
+                                    <Grid item xs={6}>
                                         <FormControl style={formControl}>
                                             <InputLabel htmlFor="input_authors">Autores</InputLabel>
                                             <Select
@@ -145,43 +164,119 @@ class Author extends React.Component{
                                                 renderValue={selected => selected.join(', ')}
                                             >
                                                 {dataProvider[0].autor.map(a => (
-                                                    <MenuItem key={a.IdInvestigador} value={a.Nombre+ ' ' +a.Apellidos}>
-                                                        <Checkbox checked={this.state.authors.indexOf(a.Nombre+ ' ' +a.Apellidos) != -1} />
-                                                        {a.Nombre+ ' ' +a.Apellidos}
+                                                    <MenuItem key={a.IdInvestigador} value={a.Nombre + ' ' + a.Apellidos}>
+                                                        <Checkbox checked={this.state.authors.indexOf(a.Nombre + ' ' + a.Apellidos) != -1} />
+                                                        {a.Nombre + ' ' + a.Apellidos}
                                                     </MenuItem>
                                                 ))}
                                             </Select>
-                                        </FormControl>                        
+                                        </FormControl>
                                     </Grid>
                                 </Grid>
                             </form>
                         </CardContent>
                     </Card>
+                </Grid>
 
-                    <Card style={cardStyle}>
-                        <CardHeader title="Publicaciones por Autor" />
+                {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
+
+                <Grid item xs={12} md={6}>
+                    <Card style={cardStyle}
+                    >
+                        <CardHeader title="Factor de impacto" />
                         <CardContent>
+
+
                             <Chart
-                                data={[
-                                { argument: "Financiera", value: 10 },
-                                { argument: "Agricultura", value: 20 },
-                                { argument: "Medicina", value: 30 },
-                                { argument: "Arte", value: 10 },
-                                { argument: "Química", value: 20 },
-                                { argument: "Ciencia de la computación", value: 30 },
-                                { argument: "Ciencias Biologicas", value: 10 },
-                                { argument: "Economía", value: 20 },
-                                { argument: "Ley y Política", value: 30 }
-                                ]}>
-                                <ValueScale name="sale" />
-                                <ValueScale name="total" />
-                                <PieSeries name="publicaciones" valueField="value" argumentField="argument" />
+                                data={datos_factor_impacto}
+                            >
+                                <ArgumentAxis />
+                                <ValueAxis />
+
+                                <BarSeries
+                                    name="Factor"
+                                    valueField="factor"
+                                    argumentField="argument"
+                                />
+                                <BarSeries
+                                    name="Publicaciones"
+                                    valueField="publicaciones"
+                                    argumentField="argument"
+                                />
+                                <BarSeries
+                                    name="Citas"
+                                    valueField="citas"
+                                    argumentField="argument"
+                                />
+                                <Animation />
+                                <Legend />
+                                <Stack />
+                            </Chart>
+                        </CardContent>
+                    </Card>
+                </Grid>
+
+                {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
+
+                <Grid item xs={12} md={6}>
+                    <Card style={cardStyle}
+                    >
+                        <CardHeader title="Promedio de citas por autor" />
+                        <CardContent>
+
+                            <Chart
+                                data={datos_citas_autor}
+                            >
+                                <ArgumentAxis />
+                                <ValueAxis />
+                                <LineSeries
+                                    name="Juanito"
+                                    valueField="promedio"
+                                    argumentField="argument"
+                                />
+                                <LineSeries
+                                    name="Perenganito"
+                                    valueField="promedio1"
+                                    argumentField="argument1"
+                                />
                                 <Animation />
                                 <Legend />
                             </Chart>
                         </CardContent>
                     </Card>
                 </Grid>
+
+                {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
+                <Grid item xs={12} md={6}>
+                    <Card style={cardStyle}
+                    >
+                        <CardHeader title="H-Index" />
+                        <CardContent>
+
+                            <Chart
+                                data={datos_citas_autor}
+                            >
+                                <ArgumentAxis />
+                                <ValueAxis />
+                                <LineSeries
+                                    name="Juanito"
+                                    valueField="promedio"
+                                    argumentField="argument"
+                                />
+                                <LineSeries
+                                    name="Perenganito"
+                                    valueField="promedio1"
+                                    argumentField="argument1"
+                                />
+                                <Animation />
+                                <Legend />
+                            </Chart>
+                        </CardContent>
+                    </Card>
+                </Grid>
+
+                {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
+
             </Grid>
         )
     }
@@ -221,7 +316,7 @@ export default Author;
                         });
                     }
                 </select>
-                </div>  
+                </div>
                 <div class="col-md-6 col-sm-12">
                     <select class="custom-select" multiple>
                     {
@@ -237,6 +332,6 @@ export default Author;
                     }
                     </select>
                 </div>
-                
+
             </div>
         </form>*/

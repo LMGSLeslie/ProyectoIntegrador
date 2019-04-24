@@ -122,7 +122,7 @@ const Area = () => (
     {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
 
     <Grid container spacing={8}>
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <Card style={cardStyle}
         >
           <CardHeader title="Publicaciones por área" />
@@ -144,7 +144,7 @@ const Area = () => (
 
       {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
 
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <Card style={cardStyle}
         >
           <CardHeader title="Factor de impacto" />
@@ -182,7 +182,7 @@ const Area = () => (
 
       {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
 
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <Card style={cardStyle}
         >
           <CardHeader title="Promedio de citas por área" />
@@ -212,7 +212,7 @@ const Area = () => (
 
       {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
 
-      <Grid item xs={6}>
+      <Grid item xs={12} md={6}>
         <Card style={cardStyle}
         >
           <CardHeader title="Porcentaje de articulos sin citas en el año" />
