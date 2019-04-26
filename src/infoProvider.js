@@ -1,4 +1,6 @@
-const dataProvider = [{
+import fakeDataProvider from 'ra-data-fakerest';
+
+const dataProvider = fakeDataProvider({
   autor : [
   {'IdInvestigador': '1', 'IdArea': '1', 'Nombre': 'Manuel', 'Apellidos': 'Pérez Estrada', 'FactorImpacto': '1', 'HIndex': '3'},
   {'IdInvestigador': '2', 'IdArea': '2', 'Nombre': 'Graciela', 'Apellidos': 'Medina Hernández', 'FactorImpacto': '3', 'HIndex': '5'},
@@ -159,7 +161,7 @@ citaPublicacion:  [
     {'IdCitaPublicacion':'39','IdPublicacion':'10','FechaCita':'2018-08-01','CantidadCitas':'8'},
     {'IdCitaPublicacion':'40','IdPublicacion':'10','FechaCita':'2013-06-01','CantidadCitas':'6'}
 ]
+}, true);
 
-}];
 
 export default dataProvider;

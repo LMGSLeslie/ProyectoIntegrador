@@ -23,7 +23,19 @@ import { Legend } from '@devexpress/dx-react-chart-material-ui';
 import { ValueScale, Animation, Stack } from '@devexpress/dx-react-chart';
 import { Chart, ArgumentAxis, ValueAxis, LineSeries, PieSeries, BarSeries } from "@devexpress/dx-react-chart-material-ui";
 
-import dataProvider from '../infoProvider';
+import serviceArea from '../services/area.service';
+
+import AsyncSelect from 'react-select';
+
+import {
+    GET_LIST,
+    GET_ONE,
+    CREATE,
+    UPDATE,
+    DELETE,
+    GET_MANY,
+    GET_MANY_REFERENCE,
+} from 'react-admin';
 
 
 // -------------------------------STYLES-------------------------------------------------//
@@ -36,7 +48,8 @@ var cardStyle = {
 
 var parametrizationStyle = {
     width: '100%',
-    marginBottom: '5%'
+    marginBottom: '5%',
+    height: '900px'
 }
 
 var formControl = {
@@ -44,6 +57,7 @@ var formControl = {
     maxWidth: 300,
 }
 // -------------------------------DATOS-------------------------------------------------//
+
 const datos_factor_impacto = [
     { argument: "Juanito", factor: 30, publicaciones: 20, citas: 10 },
     { argument: "Perenganito", factor: 30, publicaciones: 20, citas: 10 },
@@ -64,21 +78,27 @@ const datos_citas_autor = [
     { argument1: 2018, promedio1: 10 },
 ]
 // -----------------------------------------CLASS --------------------------------------------//
-
-var area = dataProvider[0].area;
+var areas = {};
 var date = new Date();
 var year = date.getFullYear();
 var minYear = 1984;
 var minEndYear = minYear + 2;
 var maxEndYear = minYear + 10;
-
+var state;
 class Author extends React.Component {
     state = {
         area: '',
         authors: [],
         startDate: year,
         endDate: year
+    };
 
+    componentWillMount(){ 
+        areas = serviceArea.getAllAreas();
+    };
+
+    componentDidMount(){
+        console.log(areas);
     };
 
     handleChangeArea = event => {
@@ -101,7 +121,14 @@ class Author extends React.Component {
         this.setState({ endDate: new Date(event).getFullYear() });
     };
 
+    
 
+    /*const promiseOptions = inputValue =>
+        new Promise(resolve => {
+            setTimeout(() => {
+            resolve(filterColors(inputValue));
+            }, 1000);
+    });*/
     // ------------------------------------GRID-------------------------------------------------//
     render() {
         return (
@@ -140,38 +167,16 @@ class Author extends React.Component {
                                     <Grid item xs={6}>
                                         <FormControl style={formControl}>
                                             <InputLabel htmlFor="input_area">Área</InputLabel>
-                                            <Select
-                                                value={this.state.area}
-                                                input={<Input id="input_area" />}
-                                                onChange={this.handleChangeArea}
-                                            >
-                                                {dataProvider[0].area.map(a => (
-                                                    <MenuItem key={a.IdArea} value={a.NombreArea}>
-                                                        {a.NombreArea}
-                                                    </MenuItem>
-                                                ))}
-                                            </Select>
+                                                <AsyncSelect
+                                                    cacheOptions
+                                                    defaultOptions
+                                                    isClearable
+                                                    loadOptions={areas}
+                                                    onChange={this.handleChangeArea}
+                                                />
                                         </FormControl>
                                     </Grid>
-                                    <Grid item xs={6}>
-                                        <FormControl style={formControl}>
-                                            <InputLabel htmlFor="input_authors">Autores</InputLabel>
-                                            <Select
-                                                multiple
-                                                value={this.state.authors}
-                                                input={<Input id="input_authors" />}
-                                                onChange={this.handleChangeAuthors}
-                                                renderValue={selected => selected.join(', ')}
-                                            >
-                                                {dataProvider[0].autor.map(a => (
-                                                    <MenuItem key={a.IdInvestigador} value={a.Nombre + ' ' + a.Apellidos}>
-                                                        <Checkbox checked={this.state.authors.indexOf(a.Nombre + ' ' + a.Apellidos) != -1} />
-                                                        {a.Nombre + ' ' + a.Apellidos}
-                                                    </MenuItem>
-                                                ))}
-                                            </Select>
-                                        </FormControl>
-                                    </Grid>
+                                    
                                 </Grid>
                             </form>
                         </CardContent>
