@@ -94,7 +94,7 @@ class Author extends React.Component {
     };
 
     componentWillMount(){ 
-        areas = serviceArea.getAllAreas();
+        this.getAreas();
     };
 
     componentDidMount(){
@@ -121,14 +121,11 @@ class Author extends React.Component {
         this.setState({ endDate: new Date(event).getFullYear() });
     };
 
-    
+    async getAreas(){
+        return serviceArea.getAllAreas();
+    }
 
-    /*const promiseOptions = inputValue =>
-        new Promise(resolve => {
-            setTimeout(() => {
-            resolve(filterColors(inputValue));
-            }, 1000);
-    });*/
+
     // ------------------------------------GRID-------------------------------------------------//
     render() {
         return (
@@ -171,7 +168,7 @@ class Author extends React.Component {
                                                     cacheOptions
                                                     defaultOptions
                                                     isClearable
-                                                    loadOptions={areas}
+                                                    loadOptions={this.getAreas()}
                                                     onChange={this.handleChangeArea}
                                                 />
                                         </FormControl>
